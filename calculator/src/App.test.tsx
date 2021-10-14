@@ -1,12 +1,9 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store/store';
 import ReactDOM from 'react-dom';
-import { calculateReducer, setSavedNumber } from './store/calculateReducer';
-import useTypedSelector from './utils/useTypedSelector';
 
 describe('App component', () => {
   const root = document.createElement('div');
@@ -43,6 +40,42 @@ describe('App component', () => {
     userEvent.click(resultBtn);
     const textInput = screen.getByPlaceholderText('0');
     expect(textInput).toHaveValue('4');
+  });
+
+  it('should show result after adding new operator', () => {
+    render(
+      <Provider store={store}>
+          <App />
+      </Provider>,
+    );
+
+    const numberBtn = screen.getByText('2');
+    userEvent.click(numberBtn);
+    const operatorBtn = screen.getByText('+');
+    userEvent.click(operatorBtn);
+    userEvent.click(numberBtn);
+    const textInput = screen.getByPlaceholderText('0');
+    expect(textInput).toHaveValue('2 + 2');
+    userEvent.click(operatorBtn);
+    expect(textInput).toHaveValue('4 + ');
+  });
+
+  it('should change operator if choose another one', () => {
+    render(
+      <Provider store={store}>
+          <App />
+      </Provider>,
+    );
+
+    const numberBtn = screen.getByText('2');
+    userEvent.click(numberBtn);
+    const operatorPlusBtn = screen.getByText('+');
+    userEvent.click(operatorPlusBtn);
+    const textInput = screen.getByPlaceholderText('0');
+    expect(textInput).toHaveValue('2 + ');
+    const operatorDevideBtn = screen.getByText('/');
+    userEvent.click(operatorDevideBtn);
+    expect(textInput).toHaveValue('2 / ');
   });
 
   it('should clear input fiels', () => {
