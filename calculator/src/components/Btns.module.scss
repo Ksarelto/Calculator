@@ -1,0 +1,48 @@
+.btn{
+  flex: 1 1 35%;
+  background-color: #8B8484;
+  color: #fff;
+  border:1px solid #403d3d;;
+}
+
+.btn_operator{
+  font-size: 40px;
+  background-color: #FA9F0B;
+
+  &:hover{
+    cursor: pointer;
+    background-color: #ac7620;
+  }
+
+  &:first-child{
+    padding: 10px;
+  }
+
+  &:last-child{
+    border-bottom-right-radius: 7px;
+  }
+}
+
+.btn_number{
+  flex: 1 1 33%;
+  font-size: 20px;
+
+  &:hover{
+    cursor: pointer;
+    background-color: #494949;
+  }
+
+  &:last-child{
+    border-bottom-left-radius: 7px;
+  }
+}
+
+.btn_additional{
+  font-size: 16px;
+  background-color: #746B6B;
+  
+  &:hover{
+    cursor: pointer;
+    background-color: #3f3d3d;
+  }
+}
