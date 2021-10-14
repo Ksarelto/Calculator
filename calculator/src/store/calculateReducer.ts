@@ -17,12 +17,12 @@ export const calculateReducer = (state = initialState, action: AnyAction): typeo
   }
 };
 
-interface IProgressActions {
+interface SavedNumber {
   type: string;
   payload: string;
 }
 
-export const setSavedNumber = (payload: string): IProgressActions => ({
+export const setSavedNumber = (payload: string): SavedNumber => ({
   type: actionType,
   payload,
 });
